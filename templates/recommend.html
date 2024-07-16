@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend Books</title>
+</head>
+<body style="margin: 0; padding: 0;">
+    <nav style="display: flex; gap: 2px; background: #4A99F8; padding: 10px 50px; justify-content: space-between;">
+        <h1 style="font-size: larger; font-weight: 900; color: white;">My Book Recommender</h1>
+        <ul style="display: flex; gap: 15px; ">
+            <a style="text-decoration: none; font-size: large; color: white; font-weight: 700;" href="/">Home</a>
+            <a style="text-decoration: none; font-size: large; color: white; font-weight: 700;" href="/recommend">Reommend Book</a>
+            <a style="text-decoration: none; font-size: large; color: white; font-weight: 700;">Contact</a>
+        </ul>
+    </nav>
+    <div style="display: flex; justify-content: center; padding: 0px 30px; flex-direction: column;">
+        <form action="/recommend_books" method="post" style="margin-top: 50px;display: flex; gap: 10px;width: 100%;flex-direction: column;">
+            <select type="text" style="flex-grow: 1;padding: 15px;outline: none;border-radius: 5px;" name="user_input" placeholder="Enter Book Name">
+                {% for book in book_name %}
+                <option value="{{ book }}">{{ book }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Recommend" style="flex-basis: 1; padding: 10px; border-radius: 10px; background-color: #4A99F8;font-weight: 900; color: white;">
+        </form>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; margin-top: 10px;gap: 10px;">
+        {% if data %}
+       {% for i in data %}
+       <div style="width: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="{{i[2]}}" alt="Image Not Found" style="width: 250px; height: 300px; object-fit: fill;">
+        <div style=" flex-grow: 1; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-top: 5px;">
+            <h3>{{i[0]}}</h3>
+            <h4>{{i[1]}}</h4>
+        </div>
+        </div>
+       {% endfor %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
